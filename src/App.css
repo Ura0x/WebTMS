@@ -1,0 +1,66 @@
+.range-slider {
+  -webkit-appearance: none; /* tira o estilo padrão */
+  width: 100%;
+  height: 8px;
+  border-radius: 9999px; /* bordas arredondadas */
+  background: #4b5563;   /* cinza escuro (gray-600 do Tailwind) */
+  outline: none;
+  cursor: pointer;
+}
+
+/* Track Firefox */
+.range-slider::-moz-range-track {
+  background: #4b5563;
+  border-radius: 9999px;
+  height: 8px;
+}
+
+/* Thumb (pecinha) */
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #8200db;  /* roxo */
+  border: none;
+  margin-top: 0px; /* alinha o círculo ao centro da barra */
+  cursor: pointer;
+}
+
+/* Thumb Firefox */
+.range-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #8200db;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+/*Scrollbar*/
+/* Para todos os scrolls */
+::-webkit-scrollbar {
+  display: none;
+  width: 8px; /* largura vertical */
+  height: 8px; /* altura horizontal */
+}
+
+/* Fundo da barra */
+::-webkit-scrollbar-track {
+  background: #2d2d2d;  /* cor de fundo (cinza escuro) */
+  border-radius: 4px;
+}
+
+/* Parte que se move */
+::-webkit-scrollbar-thumb {
+  background: #8200db;  /* roxo */
+  border-radius: 4px;
+}
+
+/* Hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #a241e8;  /* roxo mais claro */
+}
