@@ -57,13 +57,13 @@ function Tape({needle, setNeedle, instruction, setInstruction, setSymbol, flag, 
           return 'b';
         }))
 
+        setAuto(false);
+        setInstruction('')
+        setError('')
         setNeedle(0);
-        setSymbol('>')
         setSteps(0);
         setState('q0');
-        setInstruction('')
-        setAuto(false);
-        setError('')
+        setSymbol('>')
     }
 
     useEffect(() => {
@@ -83,6 +83,9 @@ function Tape({needle, setNeedle, instruction, setInstruction, setSymbol, flag, 
                     setFlag(0);
                     setAuto(false)
                     return;
+                } 
+                if (shift != 0) {
+                    setShift(prev => prev + 1)
                 }
                 setSymbol(tape[needle+1]);
                 setNeedle(prev => prev+1);
@@ -93,6 +96,9 @@ function Tape({needle, setNeedle, instruction, setInstruction, setSymbol, flag, 
                     setFlag(0);
                     setAuto(false)
                     return;
+                }
+                if (shift != 0) {
+                    setShift(prev => prev - 1)
                 }
 
                 setSymbol(tape[needle-1]);
@@ -112,21 +118,25 @@ function Tape({needle, setNeedle, instruction, setInstruction, setSymbol, flag, 
 
     return (
         <div className="bg-gray-700 text-sm text-white p-6 rounded-2xl border-1 border-gray-500">
-            <div className='flex gap-2 items-baseline mb-4'>
-                <span className='font-bold text-2xl'>Fita Semi-Infinita da Máquina de Turing</span>
-                {(instruction == 'P' || instruction == "") &&
-                    <span className='font-semibold text-xs text-gray-400'>Contagem de 1s da fita: {countOne}</span>
-                }
+            <div className='flex gap-8 items-baseline mb-4'>
+                <div className='flex flex-col'>
+                    <span className='font-bold text-2xl'>Fita Semi-Infinita da Máquina de Turing</span>
+                    {(instruction == 'P' || instruction == "") &&
+                        <span className='font-semibold text-xs text-gray-400'>Contagem de 1s da fita: {countOne}</span>
+                    }
+                </div>
+                <div className='flex gap-2 mb-4 font-semibold text-xs'>
+                    <button onClick={() => setShift(0)} className='rounded-lg p-2 bg-gray-900 hover:cursor-pointer'>Centralizar</button>
+                    <button onClick={resetTape} className='rounded-lg p-2 bg-red-500 hover:cursor-pointer'>Apagar fita</button>
+                    <button onClick={() => setShift(prev => prev+5)} className='rounded-lg p-2 bg-gray-900 hover:cursor-pointer'>← Esquerda</button>
+                    <button onClick={() => setShift(prev => prev-5)} className='rounded-lg p-2 bg-gray-900 hover:cursor-pointer'>→ Direita</button>
+                </div>
+                
             </div>
 
-            <div className='flex gap-2 mb-4 font-semibold text-xs'>
-                <button onClick={() => setShift(0)} className='rounded-lg p-2 bg-gray-900 hover:cursor-pointer'>Centralizar</button>
-                <button onClick={resetTape} className='rounded-lg p-2 bg-red-500 hover:cursor-pointer'>Apagar fita</button>
-                <button onClick={() => setShift(prev => prev+5)} className='rounded-lg p-2 bg-gray-900 hover:cursor-pointer'>← Esquerda</button>
-                <button onClick={() => setShift(prev => prev-5)} className='rounded-lg p-2 bg-gray-900 hover:cursor-pointer'>→ Direita</button>
-            </div>
+            
 
-            <div className='flex border border-gray-500 rounded-md p-1 gap-1 w-full overflow-hidden'>
+            <div className='flex border border-gray-500 rounded-md p-1 gap-4 w-full overflow-hidden'>
                 <div className='flex w-full p-1 gap-1 translate-x-2/6 transition-transform' style={{ transform: `translateX(${-(needle - shift)  * 52  }px)` }}>
                     { tape.map((el, i) => (
                         <div key={i} className='flex flex-col items-center'>
@@ -144,10 +154,10 @@ function Tape({needle, setNeedle, instruction, setInstruction, setSymbol, flag, 
                                 }
                             }}
                             disabled={el == '>'}
-                            className={`w-12 h-12 rounded-xs text-center placeholder:text-gray-500 text-lg font-bold transition-all ${needle == i ? "bg-purple-700 scale-110" : "bg-gray-600" }`}
+                            className={`w-9 h-9 rounded-xs text-center placeholder:text-gray-500 text-basis font-bold transition-all ${needle == i ? "bg-purple-700 scale-110" : "bg-gray-600" }`}
                             />
                             {i === needle &&
-                            <div className='mt-3 w-7'>
+                            <div className='mt-3 w-4'>
                                 <img src={Needle} alt="" />
                             </div>
                             }

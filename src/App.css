@@ -43,7 +43,6 @@
 /*Scrollbar*/
 /* Para todos os scrolls */
 ::-webkit-scrollbar {
-  display: none;
   width: 8px; /* largura vertical */
   height: 8px; /* altura horizontal */
 }

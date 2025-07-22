@@ -35,8 +35,8 @@ function App() {
    <div className="w- h-screen flex flex-col bg-gray-950">
       <Header />
       <div className="hidden flex-1 md:flex flex-col p-4 gap-4 min-h-0">
-        <div className="flex flex-row gap-4 flex-1 min-h-0">
-          <div className="min-2-0 basis-2/5 2xl:basis-1/5  flex-1">
+        <div className="flex flex-row gap-4 flex-1 min-h-56">
+          <div className="min-w-0 basis-2/5 xl:basis-1/5  flex-1">
             <ControlPanel 
               state={state} setState={setState}
               setNeedle={setNeedle}
@@ -49,7 +49,7 @@ function App() {
               error={error} setError={setError}
             />
           </div>
-          <div className="min-w-0 basis-3/5 2xl:basis-4/5 flex-1">
+          <div className="min-w-0 basis-3/5 xl:basis-4/5 flex-1">
             <TransictionTable 
               state={state} setState={setState}
               symbol={symbol}

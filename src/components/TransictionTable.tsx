@@ -150,7 +150,7 @@ function TransictionTable({state, setState, symbol, flag, setFlag, setInstructio
                     Exportar tabela em CSV
                 </button>
             </div>
-            <div className=' overflow-auto'>
+            <div className='overflow-auto'>
                 <table>
                     <tbody>
                     {table.map((row, rowIndex) => (

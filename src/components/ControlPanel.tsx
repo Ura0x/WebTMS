@@ -44,6 +44,7 @@ function ControlPanel ({state, setState, instruction, setInstruction, steps, aut
         setInstruction('')
         setSteps(0)
         setError('')
+        setAuto(false)
     }
 
     return (
