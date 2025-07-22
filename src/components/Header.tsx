@@ -15,7 +15,7 @@ function Header() {
             </div>
             <div>
                 <div>
-                    <a href="https://github.com/Ura0x/WebSimuladorDeMaquinaDeTuring" target="_blank" rel="noopener noreferrer"><img src={github} alt="" className='w-8 hover:cursor-pointer' /></a>
+                    <a href="https://github.com/Ura0x/WebTMS" target="_blank" rel="noopener noreferrer"><img src={github} alt="" className='w-8 hover:cursor-pointer' /></a>
                     
                 </div>
             </div>
