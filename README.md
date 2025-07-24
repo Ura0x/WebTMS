@@ -7,9 +7,9 @@ Suas aulas podem ser encontradas em seu canal no YouTube: www.youtube.com/@osfed
 
 ---
 
-🌐 Demonstração online
+### 🌐 Demonstração online
 O simulador está disponível para uso imediato em:
-🔗 web-tms.vercel.app
+🔗 https://web-tms.vercel.app
 
 ---
 
