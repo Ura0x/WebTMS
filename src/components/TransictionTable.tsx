@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { handleFileUpload } from '../utils/FileReader';
 import { exportTableAsCSV } from '../utils/ExportTable';
+import type { Tuple } from '../types/TmTuple'
+
 
 
 
@@ -13,15 +15,21 @@ type Props = {
     state: string;
     setState: React.Dispatch<React.SetStateAction<string>>
     symbol: string;
+    setSymbol: React.Dispatch<React.SetStateAction<string>>
     setCell: React.Dispatch<React.SetStateAction<Array<string>>>
     flag: number;
     setFlag: React.Dispatch<React.SetStateAction<number>>;
     setInstruction: React.Dispatch<React.SetStateAction<string>>;
     setError: React.Dispatch<React.SetStateAction<string>>;
     setAuto: React.Dispatch<React.SetStateAction<boolean>>;
+    tuple: Tuple;
+    setTuple: React.Dispatch<React.SetStateAction<Tuple>>;
+    setIsTupleModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    tupleIndicator: boolean;
+    setTupleIndicator: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-function TransictionTable({state, setState, symbol, flag, setFlag, setInstruction, setCell, setError, setAuto}:Props) {
+function TransictionTable({state, setState, symbol, setSymbol, flag, setFlag, setInstruction, setCell, setError, setAuto, tuple, setTuple, setIsTupleModalOpen, tupleIndicator, setTupleIndicator}:Props) {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const [table, setTable] = useState<string[][]>(() =>
@@ -73,6 +81,13 @@ function TransictionTable({state, setState, symbol, flag, setFlag, setInstructio
 
     useEffect(() => {
         if (flag == 1) {
+            if (!tuple.finState) {
+                setError("Defina o estado final na Nôntupla")
+                setFlag(0);
+                setAuto(false);
+                setTupleIndicator(true);
+                return;
+            }
             const symbolIndex = table[0].indexOf(symbol)
             if (symbolIndex == -1 || symbol == '') {
                 setError(`Símbolo "${symbol}" não encontrado no alfabeto de fita`);
@@ -85,6 +100,9 @@ function TransictionTable({state, setState, symbol, flag, setFlag, setInstructio
             if (stateIndex == -1) {
                 setError(`Estado "${state}" inválido`);
                 setFlag(0);
+                setState("q0");
+                setInstruction("");
+                setSymbol(">")
                 setAuto(false);
 
                 return;
@@ -94,6 +112,15 @@ function TransictionTable({state, setState, symbol, flag, setFlag, setInstructio
 
             if (cell.length != 3) {
                 setError(`Célula má formatada em ${state} lendo "${symbol}"`);
+                setFlag(0);
+                setAuto(false);
+
+                return;
+            }
+
+            if (cell[2] == 'P' && cell[0] != tuple.finState) {
+                setError('Função não pode terminar em um estado não-final. Edite na nôntupla')
+                setTupleIndicator(true);
                 setFlag(0);
                 setAuto(false);
 
@@ -114,10 +141,31 @@ function TransictionTable({state, setState, symbol, flag, setFlag, setInstructio
         }
     }, [flag])
 
+    useEffect(() => {
+        const tapeAlph = table[0].slice(1);
+        const alph = tapeAlph.filter((el) => el != '>' && el != 'b');
+
+        const states = Array.from(new Set([...table.map(row => row[0]).slice(1), tuple.finState]))
+        const nonFinalStates = states.filter(el => el != tuple.finState);
+
+        setTuple(prev => {
+            if (!prev) return prev;
+            return {
+                ...prev,
+                tapeAlphabet: tapeAlph,
+                alphabet: alph,
+                states: states,
+                nonFinalStates: nonFinalStates,
+            };
+        });
+    }, [table]);
+
+
     return (
         <div className="h-full flex flex-col bg-gray-700 text-sm text-white p-6 rounded-2xl border-1 border-gray-500">
-            <div className='mb-4'>
+            <div className='flex gap-4 items-baseline mb-4'>
                 <span className='font-bold text-2xl'>Tabela de transição</span>
+                <span className={`underline p-1 rounded-md text-gray-400 font-semibold hover:cursor-pointer ${tupleIndicator ? "animate-bg-pulse" : ""}`} onClick={() => setIsTupleModalOpen(true)}>Nôntupla</span>
             </div>
             <div className='flex gap-2 mb-4 font-semibold text-xs'>
                 <button onClick={addRow} className='rounded-lg p-2 bg-gray-900 hover:cursor-pointer'>+ Estado</button>

@@ -63,3 +63,16 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #a241e8;  /* roxo mais claro */
 }
+
+
+/* Pulsar cores no bg*/
+@keyframes bg-pulse {
+  50% { background-color: #8200db; }
+  0%, 100% { background-color: none; }
+}
+
+/* Classe */
+.animate-bg-pulse {
+  animation: bg-pulse 1s infinite ease-in-out;
+}
+

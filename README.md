@@ -1,7 +1,9 @@
 ## 🧠 Simulador de Máquina de Turing
 
 Este projeto é um simulador visual de Máquina de Turing feito em **React + TypeScript** usando **Vite**.
-O objetivo é permitir que usuários definam a função de transição, configurem a fita e acompanhem passo a passo a execução de uma máquina de Turing.
+O objetivo é permitir que usuários definam a função de transição, configurem a fita e acompanhem passo a passo a execução de uma máquina de Turing. O simulador foi feito como o Trabalho de Conclusão de Curso de Fabio Ura, sob a orientação do Prof. Mestre Doutor Ricardo Tenório Figueiredo. 
+O simulador foi desenvolvido como Trabalho de Conclusão de Curso (TCC) por Fabio Ura, sob orientação do Prof. Dr. Roberto Tenorio Figueiredo. A forma como a máquina é apresentada, bem como algumas restrições e convenções adotadas, seguem a metodologia didática do professor, que busca simplificar e padronizar o aprendizado dos conceitos teóricos para alunos de graduação.
+Suas aulas podem ser encontradas em seu canal no YouTube: www.youtube.com/@osfedera.
 
 ---
 

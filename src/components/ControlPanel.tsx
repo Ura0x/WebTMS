@@ -22,7 +22,7 @@ type Props = {
   setError: React.Dispatch<React.SetStateAction<string>>;
 };
 
-function ControlPanel ({state, setState, instruction, setInstruction, steps, auto, setAuto, setFlag, setNeedle, setSymbol, setSteps, miliseconds, setMiliseconds, error, setError}:Props) {
+function ControlPanel ({state, setState, instruction, setInstruction, steps, auto, setAuto, setFlag, setNeedle, setSymbol, setSteps, miliseconds, setMiliseconds, setError}:Props) {
 
 
     const handleAuto = () => {
@@ -65,7 +65,7 @@ function ControlPanel ({state, setState, instruction, setInstruction, steps, aut
                         <div className="flex flex-row flex-wrap gap-2 text-xs font-semibold 2xl:text-sm">
                             <button onClick={handleAuto} className={`flex gap-2 text-nowrap items-center w-[100px] rounded-lg ${auto ? "bg-orange-600" : "bg-green-500"}  p-2 f hover:cursor-pointer`}><img src={auto ? pause : play} className='w-4'/>{auto ? "Parar" : "Executar"}</button>
                             <button onClick={nextStep} className="flex gap-2 text-nowrap items-center rounded-lg bg-blue-500 p-2  hover:cursor-pointer"><img src={step} className='w-4'/>Um passo</button>
-                            <button onClick={handleResetAll} className="flex gap-2 text-nowrap items-center rounded-lg p-2 bg-gray-900 p-2 hover:cursor-pointer"><img src={reset} className='w-5'/>Resetar tudo</button>
+                            <button onClick={handleResetAll} className="flex gap-2 text-nowrap items-center rounded-lg p-2 bg-gray-900 hover:cursor-pointer"><img src={reset} className='w-5'/>Reiniciar execução</button>
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
@@ -91,9 +91,6 @@ function ControlPanel ({state, setState, instruction, setInstruction, steps, aut
                         />
                         <span className="text-white text-nowrap">{miliseconds} ms</span>
                     </div>
-                    {error && 
-                        <span className='text-red-400 font-bold'>ERRO: <span className='font-semibold'>{error}</span> </span>
-                    }
                 </div>
             </div>
         </div>

@@ -2,8 +2,12 @@ import Header from './components/Header'
 import ControlPanel from './components/ControlPanel'
 import TransictionTable from './components/TransictionTable'
 import Tape from './components/Tape'
+import ErrorModal from './components/ErrorModal'
+import TupleModal from './components/TupleModal'
 import { useState, useEffect } from 'react';
+import type { Tuple } from './types/TmTuple'
 import './App.css'
+
 
 
 function App() {
@@ -16,7 +20,20 @@ function App() {
   const [auto, setAuto] = useState(false) // flag para execução automatica
   const [cell, setCell] = useState<Array<string>>(['']) // armazena a leitura da tabela
   const [miliseconds, setMiliseconds] = useState(500); // Velocidade na execução automatica
-  const [error, setError] = useState('')
+  const [error, setError] = useState('') // Armazena e ativa a mensagem de erro
+  const [isTupleModalOpen, setIsTupleModalOpen] = useState(false); // auto explicativo ne
+  const [tupleIndicator, setTupleIndicator] = useState(false) // Se o botao da tuple vai brilhar ou n
+  const [tuple, setTuple] = useState<Tuple>({
+    states: [],
+    alphabet: [],
+    initState: 'q0',
+    finState: '',
+    transFunction: 'Tabela de transição',           
+    tapeDelimitator: '>',       
+    blank: 'b',                  
+    nonFinalStates: [],
+    tapeAlphabet: []
+  }); // também é auto explicativo né, armazena os dados da nôntupla da MT
 
   useEffect(() => {
     if (flag === 0 && auto) {
@@ -30,6 +47,14 @@ function App() {
       }
     }
   },[flag, auto])
+
+  useEffect(() => {
+    if (tupleIndicator) {
+      setTimeout(() => {
+        setTupleIndicator(false);
+      }, 10000)
+    }
+  }, [tupleIndicator])
 
   return (
    <div className="w- h-screen flex flex-col bg-gray-950">
@@ -52,12 +77,15 @@ function App() {
           <div className="min-w-0 basis-3/5 xl:basis-4/5 flex-1">
             <TransictionTable 
               state={state} setState={setState}
-              symbol={symbol}
+              symbol={symbol} setSymbol={setSymbol}
               setCell={setCell}
               flag={flag} setFlag={setFlag}
               setInstruction={setInstruction}
               setError={setError}
               setAuto={setAuto}
+              tuple={tuple} setTuple={setTuple}
+              setIsTupleModalOpen={setIsTupleModalOpen}
+              tupleIndicator={tupleIndicator} setTupleIndicator={setTupleIndicator}
             />
           </div>
         </div>
@@ -77,6 +105,17 @@ function App() {
       <div className='md:hidden m-auto p-4 w-fit items-center text-center flex flex-col bg-gray-700 rounded-2xl border-1 border-gray-500 text-gray-300'>
         <span className=''>Versão mobile em desenvolvimento,<br/> por favor use uma tela maior.</span>
       </div>
+      <ErrorModal 
+        error={error}
+        setError={setError}
+      />
+      <TupleModal 
+        isOpen={isTupleModalOpen} 
+        onClose={() => setIsTupleModalOpen(false)}
+        tuple={tuple}
+        setTuple={setTuple}
+        setError={setError}
+        />
     </div>
 
   )
