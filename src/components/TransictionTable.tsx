@@ -142,7 +142,7 @@ function TransictionTable({state, setState, symbol, setSymbol, flag, setFlag, se
     }, [flag])
 
     useEffect(() => {
-        const tapeAlph = table[0].slice(1);
+        const tapeAlph = table[0].slice(1).filter(el => el.length > 0);
         const alph = tapeAlph.filter((el) => el != '>' && el != 'b');
 
         const states = Array.from(new Set([...table.map(row => row[0]).slice(1), tuple.finState]))
