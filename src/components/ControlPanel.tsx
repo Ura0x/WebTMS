@@ -48,14 +48,14 @@ function ControlPanel ({state, setState, instruction, setInstruction, steps, aut
     }
 
     return (
-        <div className="flex flex-col overflow-auto h-full bg-gray-700 text-sm text-white p-6 rounded-2xl border-1 border-gray-500">
+        <div className="flex flex-col overflow-auto h-full bg-gray-700 text-sm text-white p-6 rounded-md border-1 border-gray-500">
             <div className="mb-4">
-               <span className="font-bold text-2xl">Painel de Controle</span>
+               <span className="font-bold text-lg xl:text-2xl text-nowrap">Painel de Controle</span>
             </div>
             <div className="flex justify-between">
                 <div className='flex flex-col gap-4'>
                     <span className="font-medium">Status da Simulação</span>
-                    <div className="flex gap-3 items-baseline mt-2">
+                    <div className="flex flex-wrap gap-3 items-baseline mt-2">
                         <span className={`font-medium text-base ${instruction == "P" ? "text-green-500" : auto ? "Executando" : "Parado"  }`}>{instruction == "P" ? "Concluído" : auto ? "Executando" : "Parado"  }</span> 
                         <span>Estado atual: <span className="font-medium">{state}</span></span> 
                         <span>Passos: <span className="font-medium">{steps}</span></span>
@@ -75,7 +75,7 @@ function ControlPanel ({state, setState, instruction, setInstruction, steps, aut
                             type="range"
                             min={100}
                             max={3000}
-                            step={100} // opcional, pra ajustar de 100 em 100
+                            step={100} 
                             value={miliseconds}
                             onChange={(e) => setMiliseconds(Number(e.target.value))}
                             className="w-64 range-slider"

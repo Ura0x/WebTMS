@@ -1,7 +1,12 @@
 import logo from '../assets/cpu.svg'
 import github from '../assets/github.svg'
 
-function Header() {
+type Props = {
+ setShowAboutModal: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+
+function Header({ setShowAboutModal}:Props) {
 
 
     return (
@@ -14,8 +19,11 @@ function Header() {
                 </div>
             </div>
             <div>
-                <div>
-                    <a href="https://github.com/Ura0x/WebTMS" target="_blank" rel="noopener noreferrer"><img src={github} alt="" className='w-8 hover:cursor-pointer' /></a>
+                <div className='flex gap-3 text-gray-200'>
+                    <div onClick={() => setShowAboutModal(true)} className='flex p-1 w-8 h-8 bg-gray-800 items-center justify-center rounded-full hover:cursor-pointer'>
+                        <span className='text-xl font-semibold'>?</span>
+                    </div>
+                    <a href="https://github.com/Ura0x/WebTMS" target="_blank" rel="noopener noreferrer" className='w-8 h-8 hover:cursor-pointer' ><img src={github} alt=""/></a>
                 </div>
             </div>
         </div>

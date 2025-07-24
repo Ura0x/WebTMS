@@ -1,4 +1,3 @@
-// utils/FileReader.ts
 export const handleFileUpload = (
   e: React.ChangeEvent<HTMLInputElement>,
   setTable: React.Dispatch<React.SetStateAction<string[][]>>

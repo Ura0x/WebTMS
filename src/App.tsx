@@ -4,6 +4,7 @@ import TransictionTable from './components/TransictionTable'
 import Tape from './components/Tape'
 import ErrorModal from './components/ErrorModal'
 import TupleModal from './components/TupleModal'
+import AboutModal from './components/AboutModal'
 import { useState, useEffect } from 'react';
 import type { Tuple } from './types/TmTuple'
 import './App.css'
@@ -21,6 +22,7 @@ function App() {
   const [cell, setCell] = useState<Array<string>>(['']) // armazena a leitura da tabela
   const [miliseconds, setMiliseconds] = useState(500); // Velocidade na execução automatica
   const [error, setError] = useState('') // Armazena e ativa a mensagem de erro
+  const [showAboutModal, setShowAboutModal] = useState(false); // auto-explicativo
   const [isTupleModalOpen, setIsTupleModalOpen] = useState(false); // auto explicativo ne
   const [tupleIndicator, setTupleIndicator] = useState(false) // Se o botao da tuple vai brilhar ou n
   const [tuple, setTuple] = useState<Tuple>({
@@ -58,10 +60,12 @@ function App() {
 
   return (
    <div className="w- h-screen flex flex-col bg-gray-950">
-      <Header />
-      <div className="hidden flex-1 md:flex flex-col p-4 gap-4 min-h-0">
-        <div className="flex flex-row gap-4 flex-1 min-h-56">
-          <div className="min-w-0 basis-2/5 xl:basis-1/5  flex-1">
+      <Header
+        setShowAboutModal={setShowAboutModal}
+      />
+      <div className="hidden flex-1 md:flex flex-col p-4 gap-2 min-h-0">
+        <div className="flex flex-row gap-2 flex-1 min-h-56">
+          <div className="min-w-0 basis-2/7 2xl:basis-1/5  flex-1">
             <ControlPanel 
               state={state} setState={setState}
               setNeedle={setNeedle}
@@ -74,7 +78,7 @@ function App() {
               error={error} setError={setError}
             />
           </div>
-          <div className="min-w-0 basis-3/5 xl:basis-4/5 flex-1">
+          <div className="min-w-0 basis-5/7 2xl:basis-4/5 flex-1">
             <TransictionTable 
               state={state} setState={setState}
               symbol={symbol} setSymbol={setSymbol}
@@ -116,6 +120,7 @@ function App() {
         setTuple={setTuple}
         setError={setError}
         />
+        {showAboutModal && <AboutModal onClose={() => setShowAboutModal(false)} />}
     </div>
 
   )

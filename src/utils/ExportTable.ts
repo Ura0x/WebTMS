@@ -1,5 +1,3 @@
-// src/utils/ExportTable.ts
-
 export function exportTableAsCSV(table: string[][], filename: string = "tabela.csv") {
   const csvContent = table.map(row => row.join(",")).join("\n");
   const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });

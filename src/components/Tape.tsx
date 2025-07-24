@@ -117,7 +117,7 @@ function Tape({needle, setNeedle, instruction, setInstruction, setSymbol, flag, 
     }, [tape])
 
     return (
-        <div className="bg-gray-700 text-sm text-white p-6 rounded-2xl border-1 border-gray-500">
+        <div className="bg-gray-700 text-sm text-white p-6 rounded-md border-1 border-gray-500">
             <div className='flex gap-8 items-baseline mb-4'>
                 <div className='flex flex-col'>
                     <span className='font-bold text-2xl'>Fita Semi-Infinita da Máquina de Turing</span>

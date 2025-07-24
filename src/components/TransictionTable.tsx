@@ -162,7 +162,7 @@ function TransictionTable({state, setState, symbol, setSymbol, flag, setFlag, se
 
 
     return (
-        <div className="h-full flex flex-col bg-gray-700 text-sm text-white p-6 rounded-2xl border-1 border-gray-500">
+        <div className="h-full flex flex-col bg-gray-700 text-sm text-white p-6 rounded-md border-1 border-gray-500">
             <div className='flex gap-4 items-baseline mb-4'>
                 <span className='font-bold text-2xl'>Tabela de transição</span>
                 <span className={`underline p-1 rounded-md text-gray-400 font-semibold hover:cursor-pointer ${tupleIndicator ? "animate-bg-pulse" : ""}`} onClick={() => setIsTupleModalOpen(true)}>Nôntupla</span>
