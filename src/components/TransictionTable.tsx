@@ -135,6 +135,14 @@ function TransictionTable({state, setState, symbol, setSymbol, flag, setFlag, se
                 return;
             }
 
+            if (!table[0].includes(cell[1])) {
+                setError(`Símbolo "${cell[1]}" não pertence ao alfabeto de fita.`);
+                setFlag(0);
+                setAuto(false);
+
+                return;
+            }
+
             setCell(cell);
             
             setFlag(2);

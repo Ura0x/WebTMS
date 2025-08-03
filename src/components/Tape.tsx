@@ -120,7 +120,7 @@ function Tape({needle, setNeedle, instruction, setInstruction, setSymbol, flag, 
         <div className="bg-gray-700 text-sm text-white p-6 rounded-md border-1 border-gray-500">
             <div className='flex gap-8 items-baseline mb-4'>
                 <div className='flex flex-col'>
-                    <span className='font-bold text-2xl'>Fita Semi-Infinita da Máquina de Turing</span>
+                    <span className='font-bold text-xl lg:text-2xl'>Fita Semi-Infinita da Máquina de Turing</span>
                     {(instruction == 'P' || instruction == "") &&
                         <span className='font-semibold text-xs text-gray-400'>Contagem de 1s da fita: {countOne}</span>
                     }

@@ -49,48 +49,46 @@ function ControlPanel ({state, setState, instruction, setInstruction, steps, aut
 
     return (
         <div className="flex flex-col overflow-auto h-full bg-gray-700 text-sm text-white p-6 rounded-md border-1 border-gray-500">
-            <div className="mb-4">
+            <div className="lg:mb-4">
                <span className="font-bold text-lg xl:text-2xl text-nowrap">Painel de Controle</span>
             </div>
-            <div className="flex justify-between">
-                <div className='flex flex-col gap-4'>
-                    <span className="font-medium">Status da Simulação</span>
-                    <div className="flex flex-wrap gap-3 items-baseline mt-2">
-                        <span className={`font-medium text-base ${instruction == "P" ? "text-green-500" : auto ? "Executando" : "Parado"  }`}>{instruction == "P" ? "Concluído" : auto ? "Executando" : "Parado"  }</span> 
-                        <span>Estado atual: <span className="font-medium">{state}</span></span> 
-                        <span>Passos: <span className="font-medium">{steps}</span></span>
+            <div className='flex flex-col h-full justify-between lg:justify-start lg:gap-4'>
+                <span className="font-medium">Status da Simulação: <span className={`font-medium text-base ${instruction == "P" ? "text-green-500" : auto ? "Executando" : "Parado"  }`}>{instruction == "P" ? "Concluído" : auto ? "Executando" : "Parado"  }</span></span>
+                <div className="flex flex-wrap gap-1 lg:gap-3 items-baseline">
+                        
+                    <span>Estado atual: <span className="font-medium">{state}</span></span> 
+                    <span>Passos: <span className="font-medium">{steps}</span></span>
+                </div>
+                <div>
+                    <span className="font-medium text-base">Controles</span>
+                    <div className="flex flex-row flex-wrap gap-2 text-xs font-semibold 2xl:text-sm">
+                        <button onClick={handleAuto} className={`flex gap-2 justify-center text-nowrap items-center min-w-9 lg:w-[100px] rounded-lg ${auto ? "bg-orange-600" : "bg-green-500"}  p-2 hover:cursor-pointer`} title='execução automática'><img src={auto ? pause : play} className='flex items-center w-4'/> <span className='hidden lg:flex'>{auto ? "Parar" : "Executar"}</span></button>
+                        <button onClick={nextStep} className="flex gap-2 text-nowrap items-center rounded-lg bg-blue-500 p-2  hover:cursor-pointer" title='execução manual'><img src={step} className='w-4'/><span className='hidden lg:flex'>Um passo</span></button>
+                        <button onClick={handleResetAll} className="flex gap-2 text-nowrap items-center rounded-lg p-2 bg-gray-900 hover:cursor-pointer" title='reiniciar execução'><img src={reset} className='w-5'/><span className='hidden lg:flex'>Reiniciar execução</span></button>
                     </div>
-                    <div>
-                        <span className="font-medium text-base">Controles</span>
-                        <div className="flex flex-row flex-wrap gap-2 text-xs font-semibold 2xl:text-sm">
-                            <button onClick={handleAuto} className={`flex gap-2 text-nowrap items-center w-[100px] rounded-lg ${auto ? "bg-orange-600" : "bg-green-500"}  p-2 f hover:cursor-pointer`}><img src={auto ? pause : play} className='w-4'/>{auto ? "Parar" : "Executar"}</button>
-                            <button onClick={nextStep} className="flex gap-2 text-nowrap items-center rounded-lg bg-blue-500 p-2  hover:cursor-pointer"><img src={step} className='w-4'/>Um passo</button>
-                            <button onClick={handleResetAll} className="flex gap-2 text-nowrap items-center rounded-lg p-2 bg-gray-900 hover:cursor-pointer"><img src={reset} className='w-5'/>Reiniciar execução</button>
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                        <label htmlFor="speed" className="text-white w-10"><img src={timer} alt="" /></label>
-                        <input
-                            id="speed"
-                            type="range"
-                            min={100}
-                            max={3000}
-                            step={100} 
-                            value={miliseconds}
-                            onChange={(e) => setMiliseconds(Number(e.target.value))}
-                            className="w-64 range-slider"
-                            style={{
-                                background: `linear-gradient(
-                                to right,
-                                #B340FF 0%,
-                                #B340FF ${(miliseconds - 100) / (3000 - 100) * 100}%,
-                                #4b5563 ${(miliseconds - 100) / (3000 - 100) * 100}%,
-                                #4b5563 100%
-                                )`
-                            }}
-                        />
-                        <span className="text-white text-nowrap">{miliseconds} ms</span>
-                    </div>
+                </div>
+                <div className="flex items-center gap-4 mt-1">
+                    <label htmlFor="speed" className="text-white w-10"><img src={timer} alt="" /></label>
+                    <input
+                        id="speed"
+                        type="range"
+                        min={100}
+                        max={3000}
+                        step={100} 
+                        value={miliseconds}
+                        onChange={(e) => setMiliseconds(Number(e.target.value))}
+                        className="w-64 range-slider"
+                        style={{
+                            background: `linear-gradient(
+                            to right,
+                            #B340FF 0%,
+                            #B340FF ${(miliseconds - 100) / (3000 - 100) * 100}%,
+                            #4b5563 ${(miliseconds - 100) / (3000 - 100) * 100}%,
+                            #4b5563 100%
+                            )`
+                        }}
+                    />
+                    <span className="text-white text-nowrap">{miliseconds} ms</span>
                 </div>
             </div>
         </div>

@@ -1,0 +1,13 @@
+,1,X,Y,>,b
+q0,q0 X R, , ,q0 > R,q1 b L
+q1,q1 1 L,q2 1 R, ,q4 > R,
+q2,q2 1 R, , , ,q3 1 R
+q3, , , , ,q1 1 L
+q4,q5 X R, ,q10 Y R, ,
+q5,q5 1 R, ,q6 Y L, ,q6 b L
+q6,q7 Y L, , , ,
+q7,q8 Y L, , , ,
+q8,q9 Y L, , , ,
+q9,q9 1 L,q4 X R, , ,
+q10, , ,q10 Y R, ,q11 b L
+q11, ,q11 1 L,q11 b L,q12 > P,
