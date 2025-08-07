@@ -27,6 +27,11 @@ function AboutModal({ onClose }: AboutModalProps) {
             </p>
 
             <p className="mb-3">
+              O projeto foi realizado como Trabalho de Conclusão de Curso (TCC) por <strong>Fabio Ura</strong>,
+              com o objetivo de tornar o aprendizado mais acessível e interativo para estudantes de computação.
+            </p>
+
+            <p className="mb-3">
               Para facilitar o aprendizado, o simulador adota algumas convenções importantes:
             </p>
 
@@ -67,6 +72,7 @@ function AboutModal({ onClose }: AboutModalProps) {
                 youtube.com/@osfedera
               </a>
             </p>
+
 
         </div>
     </div>
