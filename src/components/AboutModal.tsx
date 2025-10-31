@@ -46,9 +46,9 @@ function AboutModal({ onClose }: AboutModalProps) {
             <p className="mb-3">
               Os arquivos que podem ser importados para preencher a tabela de transições devem estar
               no formato <code>.txt</code> ou <code>.csv</code>.  
-              Você pode baixar um <strong>arquivo-exemplo</strong> clicando&nbsp;
+              Você pode baixar um <strong>arquivo-exemplo ( "(3x)/4" )</strong> clicando&nbsp;
               <a
-                href="/exemplo.csv"
+                href="/(3X)div4.csv"
                 download
                 className="text-purple-400 underline"
               >
